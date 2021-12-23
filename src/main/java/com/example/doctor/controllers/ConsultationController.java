@@ -50,4 +50,31 @@ public class ConsultationController {
 
         consultationService.deleteConsultation(id);
     }
+
+    @GetMapping("/validc/{id}")
+    public ResponseEntity<?> validConsultation( @PathVariable Integer id) {
+        try {
+            Consultation consultation= consultationService.getConsultation(id) ;
+          //   consultation.setId(id);
+             consultation.setEtat("done");
+            consultationService.saveConsultation(consultation);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/declinec/{id}")
+    public ResponseEntity<?> declineConsultation( @PathVariable Integer id) {
+        try {
+            Consultation consultation= consultationService.getConsultation(id) ;
+            //   consultation.setId(id);
+            consultation.setEtat("declined");
+            consultationService.saveConsultation(consultation);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

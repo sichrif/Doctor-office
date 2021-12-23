@@ -1,11 +1,14 @@
 package com.example.doctor.models;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Date;
 
 
-@Entity
+@Entity(name = "consultations")
 @Table(name = "consultations")
+@DynamicUpdate
 public class Consultation {
     private int id;
     private Date dateConsultation;
