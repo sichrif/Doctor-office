@@ -12,7 +12,9 @@ public class User {
     private int CIN;
     private int tel;
     private String role;
-
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Cabinet cabinet;
     public User() {
     }
 

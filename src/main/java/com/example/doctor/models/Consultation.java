@@ -14,7 +14,9 @@ public class Consultation {
     private Date dateConsultation;
     private String heurC;
     private String etat;
-
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Cabinet cabinet;
     public Consultation() {
     }
 
